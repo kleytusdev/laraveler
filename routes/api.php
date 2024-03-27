@@ -20,6 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', [AuthenticatedController::class, 'store'])->name('login');
-Route::post('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
+Route::post('login', [AuthenticatedController::class, 'store']);
 Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
+
+Route::group([
+    'middleware' => 'auth:sanctum'
+], static function () {
+    Route::post('logout', [AuthenticatedController::class, 'destroy'])->name('logout');
+});
