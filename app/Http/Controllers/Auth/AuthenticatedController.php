@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -10,31 +11,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticatedController extends Controller
 {
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (Auth()->attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('token')->plainTextToken;
-
-            return new JsonResponse(
-                data: ['token' => $token],
-                status: Response::HTTP_OK
-            );
+        if (Auth::attempt($request->all())) {
+            return response()->json(['token' => $request->user()->createToken('token')->plainTextToken], Response::HTTP_OK);
         } else {
-            return new JsonResponse(
-                data: ['message' => 'Credenciales inválidas.'],
-                status: Response::HTTP_UNAUTHORIZED
-            );
+            return response()->json(['message' => 'Credenciales inválidas.'], Response::HTTP_UNAUTHORIZED);
         }
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
-        dd('logout');
+        $request->user()->currentAccessToken()->delete();
+
+        return new JsonResponse([
+            'message' => 'Cerró sesión exitosamente.',
+        ], Response::HTTP_OK);
     }
 }
