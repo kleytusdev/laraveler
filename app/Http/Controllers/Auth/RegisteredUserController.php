@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class RegisteredUserController extends Controller
 {
-    //
+    public function store()
+    {
+        return response()->json('Ok');
+    }
 }

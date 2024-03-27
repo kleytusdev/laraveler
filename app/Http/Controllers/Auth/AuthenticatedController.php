@@ -7,5 +7,13 @@ use Illuminate\Http\Request;
 
 class AuthenticatedController extends Controller
 {
-    //
+    public function store()
+    {
+
+    }
+
+    public function destroy()
+    {
+
+    }
 }
