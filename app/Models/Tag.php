@@ -11,5 +11,10 @@ class Tag extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
+
     protected $fillable = ['name'];
 }
