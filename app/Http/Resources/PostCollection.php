@@ -5,9 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PostResourceCollection extends ResourceCollection
+class PostCollection extends ResourceCollection
 {
-    public static $wrap = 'post';
+    // public static $wrap = 'post';
 
     public function toArray(Request $request): array
     {
