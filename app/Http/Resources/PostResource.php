@@ -11,6 +11,9 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'tags' => $this->when($this->tags->whereIn('name', ['perferendis', 'sed'])->pluck('name')->isNotEmpty(), function () {
+                return $this->tags->whereIn('name', ['perferendis', 'sed'])->pluck('name');
+            }),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
         ];
     }

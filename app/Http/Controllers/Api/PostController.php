@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+// use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostCollection;
@@ -10,7 +11,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        return new PostCollection(Post::with('comments')->get());
+        // return new PostResource(Post::with('comments')->find(3));
+        return new PostCollection(Post::with(['comments', 'tags'])->get());
     }
 
     public function show(Post $post)
