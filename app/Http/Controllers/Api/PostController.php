@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\PostCollection;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -24,9 +25,9 @@ class PostController extends Controller
         dd('update');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        dd('store');
+        return Post::create($request->all());
     }
 
     public function destroy(Post $post)
