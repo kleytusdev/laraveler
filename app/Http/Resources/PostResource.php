@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\TagEnum;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -11,7 +12,7 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'tags' => TagResource::collection($this->whenLoaded('tags')),
+            'tags' => $this->whenLoaded('tags') ? TagResource::collection($this->tags->where('name', TagEnum::WORK)) : [],
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
             'comments_count' => $this->whenCounted('comments'),
         ];

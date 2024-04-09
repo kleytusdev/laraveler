@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\TagEnum;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Resources\TagResource;
@@ -11,7 +12,8 @@ class TagController extends Controller
 {
     public function index()
     {
-        return TagResource::collection(Tag::all());
+        // return TagResource::collection(Tag::all());
+        return Tag::whereName(TagEnum::WORK)->get();
     }
 
     public function show(Tag $tag)
