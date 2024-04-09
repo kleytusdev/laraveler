@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             TagSeeder::class,
             PostTagSeeder::class,
+            TaskStatusSeeder::class,
+            TaskSeeder::class
         ]);
     }
 }
