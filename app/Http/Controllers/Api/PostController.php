@@ -27,7 +27,32 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        return Post::create($request->all());
+        // $existingPost = Post::where([
+        //     ['title', $request->title],
+        //     ['user_id', $request->user_id]
+        // ])->first();
+
+        // if ($existingPost) {
+        //     $existingPost->body = $request->body;
+        //     $existingPost->save();
+        //     return $existingPost;
+        // } else {
+        //     return Post::create([
+        //         'title' => $request->title,
+        //         'body' => $request->body,
+        //         'user_id' => $request->user_id,
+        //     ]);
+        // }
+
+        // return Post::updateOrCreate(
+        //     [
+        //         'title' => $request->title,
+        //         'user_id' => $request->user_id
+        //     ],
+        //     [
+        //         'body' => $request->body
+        //     ]
+        // );
     }
 
     public function destroy(Post $post)

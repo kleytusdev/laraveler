@@ -31,11 +31,22 @@ class TagController extends Controller
         //     ['name' => $request->name]
         // );
 
-        $tag = Tag::where('name', $request->name)->first();
+        // return Tag::firstOrNew(
+        //     ['name' => $request->name],
+        //     ['name' => $request->name]
+        // );
 
-        if (!$tag) return Tag::create($request->all());
+        // return Tag::whereName($request->name)->firstOr(function () use ($request) {
+        //     return Tag::create([
+        //         'name' => $request->name,
+        //     ]);
+        // });
 
-        return response()->json($tag);
+        // $tag = Tag::where('name', $request->name)->first();
+
+        // if (!$tag) return Tag::create($request->all());
+
+        // return response()->json($tag);
     }
 
     public function destroy(Tag $tag)
