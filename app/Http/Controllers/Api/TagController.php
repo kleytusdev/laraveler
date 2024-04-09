@@ -40,6 +40,11 @@ class TagController extends Controller
 
     public function destroy(Tag $tag)
     {
-        dd('destroy');
+        return Tag::destroy($tag->id);
+    }
+
+    public function restore(int $id)
+    {
+        return Tag::onlyTrashed()->find($id)->restore();
     }
 }

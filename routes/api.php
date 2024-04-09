@@ -20,4 +20,5 @@ Route::group([
 ], static function () {
     Route::apiResource('posts', PostController::class);
     Route::apiResource('tags', TagController::class);
+    Route::patch('tags/restore/{id}', [TagController::class, 'restore']);
 });
