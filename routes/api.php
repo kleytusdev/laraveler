@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\TaskController;
+use App\Http\Controllers\Api\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Route::group([
 ], static function () {
     Route::apiResource('posts', PostController::class);
     Route::apiResource('tags', TagController::class);
+    Route::apiResource('tasks', TaskController::class);
     Route::patch('tags/restore/{id}', [TagController::class, 'restore']);
 });

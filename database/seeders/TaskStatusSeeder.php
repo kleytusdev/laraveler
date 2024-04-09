@@ -2,16 +2,17 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\TaskStatus;
+use App\Enums\TaskStatusEnum;
 use Illuminate\Database\Seeder;
 
 class TaskStatusSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        foreach(TaskStatusEnum::cases() as $task)
+        {
+            TaskStatus::create(['name' => $task]);
+        }
     }
 }
