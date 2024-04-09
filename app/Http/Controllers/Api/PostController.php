@@ -11,8 +11,6 @@ class PostController extends Controller
 {
     public function index()
     {
-        // return new PostResource(Post::with('comments')->find(3));
-        // return PostResource::collection(Post::with(['comments', 'tags'])->withCount('comments')->get());
         return new PostCollection(Post::with(['comments', 'tags'])->withCount('comments')->get());
     }
 

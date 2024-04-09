@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PostCollection extends ResourceCollection
 {
-    public static $wrap = 'post';
+    // public static $wrap = 'post';
 
     public function toArray(Request $request): array
     {
