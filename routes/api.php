@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\PostController;
 */
 
 Route::group([
-    'middleware' => 'auth:sanctum'
+    // 'middleware' => 'auth:sanctum'
 ], static function () {
     Route::apiResource('posts', PostController::class);
     Route::apiResource('tags', TagController::class);

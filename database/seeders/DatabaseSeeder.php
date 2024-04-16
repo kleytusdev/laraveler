@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             PostTagSeeder::class,
             TaskStatusSeeder::class,
-            TaskSeeder::class
+            TaskSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class
         ]);
     }
 }
