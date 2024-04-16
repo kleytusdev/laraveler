@@ -22,5 +22,5 @@ Route::group([
     Route::apiResource('posts', PostController::class);
     Route::apiResource('tags', TagController::class);
     Route::apiResource('tasks', TaskController::class);
-    Route::patch('tags/restore/{id}', [TagController::class, 'restore']);
+    Route::patch('tags/restore/{tag}', [TagController::class, 'restore'])->withTrashed();
 });

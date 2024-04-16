@@ -12,8 +12,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        // return TagResource::collection(Tag::all());
-        return Tag::whereName(TagEnum::WORK)->get();
+        return TagResource::collection(Tag::all());
     }
 
     public function show(Tag $tag)
@@ -38,11 +37,11 @@ class TagController extends Controller
         //     ['name' => $request->name]
         // );
 
-        // return Tag::whereName($request->name)->firstOr(function () use ($request) {
-        //     return Tag::create([
-        //         'name' => $request->name,
-        //     ]);
-        // });
+        return Tag::whereName($request->name)->firstOr(function () use ($request) {
+            return Tag::create([
+                'name' => $request->name,
+            ]);
+        });
 
         // $tag = Tag::where('name', $request->name)->first();
 
@@ -56,8 +55,8 @@ class TagController extends Controller
         return Tag::destroy($tag->id);
     }
 
-    public function restore(int $id)
+    public function restore(Tag $tag)
     {
-        return Tag::onlyTrashed()->find($id)->restore();
+        return $tag->restore();
     }
 }

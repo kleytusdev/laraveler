@@ -24,7 +24,7 @@ class Tag extends Model
 
     protected $fillable = ['name'];
 
-    protected $casts = [
-		'name' => TagEnum::class,
-	];
+    // protected $casts = [
+	// 	'name' => TagEnum::class,
+	// ];
 }
