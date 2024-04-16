@@ -11,5 +11,6 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         Permission::create(['name' => 'tasks.show'])->syncRoles([RoleEnum::OWNER->value, RoleEnum::EMPLOYEE->value]);
+        Permission::create(['name' => 'permissions.get'])->syncRoles([RoleEnum::OWNER->value]);
     }
 }

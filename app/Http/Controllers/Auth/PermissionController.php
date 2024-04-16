@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
-    public function get()
+    public function __construct()
     {
-        $user = Auth::user();
+        $this->middleware('can:permissions.get')->only(['get']);
+    }
 
-        return $user->getAllPermissions()->map(function ($permission) {
+    public function get(Request $request)
+    {
+        return $request->user()->getAllPermissions()->map(function ($permission) {
             return [
                 'id' => $permission->id,
                 'name' => $permission->name

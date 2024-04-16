@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Auth\RegisteredUserRequest;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class RegisteredUserController extends Controller
