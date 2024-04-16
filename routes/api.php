@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Auth\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +19,12 @@ use App\Http\Controllers\Api\PostController;
 */
 
 Route::group([
-    // 'middleware' => 'auth:sanctum'
+    'middleware' => 'auth:sanctum'
 ], static function () {
     Route::apiResource('posts', PostController::class);
     Route::apiResource('tags', TagController::class);
     Route::apiResource('tasks', TaskController::class);
     Route::patch('tags/restore/{tag}', [TagController::class, 'restore'])->withTrashed();
+    Route::get('permissions', [PermissionController::class, 'get'])->name('permissions.get');
+    Route::patch('users/{user}/role', [UserController::class, 'assignRole'])->name('users.role.update');
 });
