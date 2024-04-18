@@ -49,7 +49,7 @@ return [
             'root' => storage_path('app/images'),
             'url' => env('APP_URL').'/images',
             'visibility' => 'public',
-            'throw' => false,
+            'throw' => true,
         ],
 
         's3' => [

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\PostPhoto;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Traits\Base64Decodable;
+use App\Http\Controllers\Controller;
+
 
 class PostPhotoController extends Controller
 {
+    use Base64Decodable;
+
     public function storeFile(Request $request)
     {
         return PostPhoto::create([
@@ -18,6 +23,9 @@ class PostPhotoController extends Controller
 
     public function storeBase64(Request $request)
     {
-        dd($request->photo);
+        return PostPhoto::create([
+            'uri' => $this->saveImage($request->photo, 'posts', Str::uuid()),
+            'post_id' => 1,
+        ]);
     }
 }
