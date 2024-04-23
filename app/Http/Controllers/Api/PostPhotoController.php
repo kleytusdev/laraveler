@@ -13,6 +13,11 @@ class PostPhotoController extends Controller
 {
     use Base64Decodable;
 
+    public function index()
+    {
+        return PostPhoto::all();
+    }
+
     public function storeFile(Request $request)
     {
         return PostPhoto::create([

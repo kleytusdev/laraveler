@@ -12,6 +12,7 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'title' => $this->title,
             'tags' => $this->whenLoaded('tags') ? TagResource::collection($this->tags->where('name', TagEnum::WORK)) : [],
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
             'comments_count' => $this->whenCounted('comments'),

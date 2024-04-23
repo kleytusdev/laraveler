@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\PostPhotoController;
-use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\PermissionController;
 
 /*
@@ -20,7 +20,7 @@ use App\Http\Controllers\Auth\PermissionController;
 */
 
 Route::group([
-    'middleware' => 'auth:sanctum'
+    // 'middleware' => 'auth:sanctum'
 ], static function () {
     Route::apiResource('posts', PostController::class);
     Route::apiResource('tags', TagController::class);
@@ -32,8 +32,9 @@ Route::group([
 
 Route::group([
     'controller' => PostPhotoController::class,
-    'as' => 'posts.photo.',
+    'as' => 'post.photos.',
 ], static function () {
-    Route::post('posts/photo/file', 'storeFile')->name('file.store');
-    Route::post('posts/photo/base64', 'storeBase64')->name('base64.store');
+    Route::get('post/photos', 'index')->name('index');
+    Route::post('post/photos/file', 'storeFile')->name('file.store');
+    Route::post('post/photos/base64', 'storeBase64')->name('base64.store');
 });

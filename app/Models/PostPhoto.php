@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,4 +19,11 @@ class PostPhoto extends Model
     }
 
     protected $fillable = ['uri', 'post_id'];
+
+    protected function uri(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) =>  "storage/{$value}",
+        );
+    }
 }
