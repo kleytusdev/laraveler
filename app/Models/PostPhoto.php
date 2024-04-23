@@ -20,10 +20,16 @@ class PostPhoto extends Model
 
     protected $fillable = ['uri', 'post_id'];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
+    ];
+
     protected function uri(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) =>  "storage/{$value}",
+            // get: fn (string $value) =>  "images/{$value}",
+            set: fn (string $value) => "images/{$value}",
         );
     }
 }

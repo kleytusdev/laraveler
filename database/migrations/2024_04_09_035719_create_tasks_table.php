@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->json('tags');
             $table->timestamp('started_at');
             $table->timestamp('finished_at');
             $table->foreignId('status_id')->constrained('task_statuses');

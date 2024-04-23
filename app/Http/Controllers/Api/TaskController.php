@@ -16,7 +16,17 @@ class TaskController extends Controller
 
     public function index()
     {
-        return Task::whereStatus(TaskStatusEnum::CANCELED)->get();
+        // return Task::get();
+        $tags = ['Archivado', 'Importante'];
+
+        return Task::create([
+            'title' => 'Test Title',
+            'description' => 'Test Description',
+            'tags' => $tags,
+            'started_at' => now(),
+            'finished_at' => now()->addDays(2),
+            'status_id' => 1,
+        ]);
     }
 
     public function store(Request $request)

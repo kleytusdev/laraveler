@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Json;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,5 +23,16 @@ class Task extends Model
         return $query->where('status_id', TaskStatus::getIdByName($statusName));
     }
 
-    protected $fillable = ['title', 'description', 'started_at', 'finished_at', 'status_id'];
+    protected $casts = [
+        'tags' => Json::class
+    ];
+
+    protected $fillable = [
+        'title',
+        'description',
+        'tags',
+        'started_at',
+        'finished_at',
+        'status_id'
+    ];
 }
