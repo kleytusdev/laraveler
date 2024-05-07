@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.8.1",
         "laravel/framework": "^10.48.4",
         "laravel/sanctum": "^3.3",
+        "laravel/telescope": "^5.0",
         "laravel/tinker": "^2.9",
         "spatie/laravel-permission": "^6.4"
     },

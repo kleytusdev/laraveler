@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use Exception;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Exceptions\PostException;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\PostCollection;
@@ -33,15 +35,19 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
-        return Post::updateOrCreate(
-            [
-                'title' => $request->title,
-                'user_id' => $request->user_id
-            ],
-            [
-                'body' => $request->body
-            ]
-        );
+        try {
+            return Post::updateOrCreate(
+                [
+                    'title' => $request->title,
+                    'user_id' => $request->user_id
+                ],
+                [
+                    'body' => $request->body
+                ]
+            );
+        } catch (Exception $e) {
+            throw new PostException('Error al crear o actualizar post');
+        }
     }
 
     public function destroy(Post $post)
